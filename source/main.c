@@ -25,10 +25,10 @@ while(1) {
 		// 2) Perform computation
 		// if PA0 is 1, set PB1PB0 = 01, else = 10
 		if ((tmpA == 0x01) && (tmpA2 == 0x00)) { // True if PA0 is 0 and pa1 is 1
-			tmpB = (tmpB & 0xFC) | 0x01; // Sets tmpB to bbbbbb01
+			tmpB = (tmpB & 0x00) | 0x01; // Sets tmpB to bbbbbb01
 							 // (clear rightmost 2 bits, then set to 01)
 		} else {
-			tmpB = (tmpB & 0xFC) | 0x00; // Sets tmpB to bbbbbb10
+			tmpB = (tmpB & 0x00) | 0x00; // Sets tmpB to bbbbbb10
 							 // (clear rightmost 2 bits, then set to 10)
 		}	
 	// 3) Write output
