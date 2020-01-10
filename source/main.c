@@ -1,7 +1,7 @@
-/*	Author: gbeat002
+/*	Author: Grant Beatty gbeat002
  *  Partner(s) Name: None
- *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Lab Section: 22
+ *	Assignment: Lab 2#  Exercise #2
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -15,24 +15,33 @@
 int main(void) {
 	DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
 	DDRB = 0xFF; PORTB = 0x00; // Configure port B's 8 pins as outputs, initialize to 0s
-	unsigned char tmpB = 0x00; // Temporary variable to hold the value of B
+	DDRC = 0xFF; PORTC = 0x00;
 	unsigned char tmpA = 0x00; // Temporary variable to hold the value of A
-	unsigned char tmpA2 = 0x00;
+	unsigned char cntavail = 0x00;
 while(1) {
-		// 1) Read input
-		tmpA = PINA & 0x01;
-		tmpA2 = PINA & 0x02;
-		// 2) Perform computation
-		// if PA0 is 1, set PB1PB0 = 01, else = 10
-		if ((tmpA == 0x01) && (tmpA2 == 0x00)) { // True if PA0 is 0 and pa1 is 1
-			tmpB = (tmpB & 0x00) | 0x01; // Sets tmpB to bbbbbb01
-							 // (clear rightmost 2 bits, then set to 01)
-		} else {
-			tmpB = (tmpB & 0x00) | 0x00; // Sets tmpB to bbbbbb10
-							 // (clear rightmost 2 bits, then set to 10)
+		// 
+		tmpA = PINA & 0x0F;
+		// 
+		// 
+		if ((tmpA == 0x08) || (tmpA == 0x04) || (tmpA == 0x02) || (tmpA == 0x01)) { 
+				cntavail = 0x03;
+			}
+		else if ((tmpA == 0x03) || (tmpA == 0x05) || (tmpA == 0x06) || (tmpA == 0x09) || (tmpA == 0x0A) || (tmpA == 0x0C) ){ 
+				cntavail = 0x02;
+			}
+		
+		else if ((tmpA == 0x07) || (tmpA == 0x0B) || (tmpA == 0x0D) || (tmpA == 0x0E)) { 
+				cntavail = 0x01;
+			}
+		else if(tmpA == 0x0F){
+			cntavail = 0x00;
+			}
+ 		else {
+			
+			cntavail = 0x04;
 		}	
 	// 3) Write output
-PORTB = tmpB;	
+PORTC = cntavail;	
 	}
 	return 0;
 }
