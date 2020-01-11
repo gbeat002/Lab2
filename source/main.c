@@ -34,7 +34,7 @@ while(1) {
 				cntavail = 0x01;
 			}
 		else if(tmpA == 0x0F){
-			cntavail = 0x00;
+			cntavail = 0x80;
 			}
  		else {
 			

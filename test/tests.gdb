@@ -33,9 +33,9 @@ setPINB 0x00
 # Continue for several ticks
 continue 2
 # Set expect values
-expectPORTC 0
+
 # Check pass/fail
-checkResult
+
 
 # Add tests below
 
@@ -140,10 +140,10 @@ checkResult
 
 
 
-test “PINA: 0x0F => PORTC: 0x00”
+test “PINA: 0x0F => PORTC: 0x80”
 setPINA 0x0F
 continue 5
-expectPORTC 0x00
+expectPORTC 0x80
 checkResult
 
 
